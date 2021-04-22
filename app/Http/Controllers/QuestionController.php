@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quiz;
+use App\Models\Answer;
+use App\Models\Question;
 
-class QuizController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = (new Quiz)->allQuiz();
-        return view('backend.quiz.index', compact('quizzes'));
+        $questions = (new Question)->getQuestion();
+        return view('backend.question.index', compact('questions'));
     }
 
     /**
@@ -25,7 +27,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return view('backend.quiz.create');
+        return view('backend.question.create');
     }
 
     /**
@@ -37,9 +39,9 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateForm($request);
-        $quiz = (new Quiz)->storeQuiz($data);
-
-        return redirect()->back()->with('message', 'kuis Berhasil dibuat');
+        $question = (new Question)->storeQuestion($data);
+        $Answer = (new Answer)->storeAnswer($data,$question->id);
+        return redirect()->back()->with('message', 'Pertanyaan Berhasil dibuat');
     }
 
     /**
@@ -50,9 +52,8 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        $quizzes = (new Quiz)->getQuestions($id);
-        //return $quizzes;
-        return view('backend.quiz.show',compact('quizzes'));
+        $question = (new Question)->getQuestionByID($id);
+        return view('backend.question.show', compact('question'));
     }
 
     /**
@@ -63,9 +64,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
-        $quiz = (new Quiz)->findQuiz($id);
-        return view('backend.quiz.edit',compact('quiz'));
+        $question = (new Question)->getQuestionByID($id);
+        return view('backend.question.edit', compact('question'));
     }
 
     /**
@@ -77,11 +77,10 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data = $this->validateForm($request);
-        $quiz = (new Quiz)->updateQuiz($data,$id);
-
-        return redirect(route('quiz.index'))->with('message', 'kuis Berhasil diupdate');
+        $question = (new Question)->updateQuestion($data, $id);
+        $Answer = (new Answer)->updateAnswer($data,$question->id);
+        return redirect()->route('question.show',$id)->with('message', 'Pertanyaan Berhasil diedit');
     }
 
     /**
@@ -92,15 +91,19 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        (new Quiz)->deleteQuiz($id);
-        return redirect(route('quiz.index'))->with('message', 'kuis Berhasil dihapus');
+        (new Answer)->deleteAnswer($id);
+        (new Question)->deleteQuestion($id);
+        return redirect()->route('question.index')->with('message', 'Pertanyaan Berhasil dihapus');
     }
 
     public function validateForm($request){
         return $this->validate($request,[
-            'name' => 'required|string',
-            'description' => 'required|min:3|max:500',
-            'minutes'=>'required|integer'
+            'quiz'=>'required',
+            'question'=>'required',
+            'options'=>'required|array|min:3',
+            'options.*'=>'required|string|distinct',
+            'correct_answer'=>'required'
+
         ]);
     }
 }
