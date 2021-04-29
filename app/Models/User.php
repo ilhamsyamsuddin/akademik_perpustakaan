@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\User;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -17,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','visible_password','occupation','address','phone', 'is_admin'
+        'reg_id','name', 'email', 'password','visible_password','occupation','address','phone', 'is_admin'
     ];
 
     /**
@@ -37,4 +39,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function storeUser($data){
+        $data['visible_password'] = $data['password'];
+        $data['password'] = bcrypt($data['password']);
+        $data['is_admin'] = 0;
+        return User::create($data);
+    }
+
+    public function allUser(){
+        return User::latest()->paginate(10);
+    }
+
+    public function getUser($id){
+        return User::find($id);
+    }
+
+    public function updateUser($data,$id){
+        $user = User::find($id);
+        if($data['password']){
+            $user->password = bcrypt($data['password']);
+            $user->visible_password = $data['password'];
+        }
+
+        $user->name = $data['name'];
+        $user->occupation = $data['occupation'];
+        $user->phone = $data['phone'];
+        $user->address = $data['address'];
+        $user->save();
+        return $user;
+
+    }
+
+    public function deleteUser($id){
+        $user = User::find($id)->delete();
+    }
 }

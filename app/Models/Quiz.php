@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Question;
 use App\Models\Quiz;
-
+use App\Models\User;
 class Quiz extends Model
 {
     use HasFactory;
@@ -18,6 +18,10 @@ class Quiz extends Model
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class,'quiz_user_table');
     }
 
     public function storeQuiz($data){
@@ -43,5 +47,12 @@ class Quiz extends Model
 
     public function getQuestions($id){
         return Quiz::with('questions')->where('id', $id)->get();
+    }
+
+    public function assignExam($data){
+        $quizId = $data['quiz'];
+        $quiz = Quiz::find($quizId);
+        $userId = $data['user_id'];
+        return $quiz->users()->syncWithoutDetaching($userId);
     }
 }

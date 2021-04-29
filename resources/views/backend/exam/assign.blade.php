@@ -7,7 +7,7 @@
 				@if (Session::has('message'))
 					<div class="alert alert-success">{{Session::get('message')}}</div>
 				@endif
-				<form action="{{route('question.store')}}" method="POST">@csrf
+				<form action="{{route('exam.store')}}" method="POST">@csrf
 					<div class="module">
 						<div class="module-head">
 							<h2>Buat Soal</h2>
@@ -29,28 +29,17 @@
 									</span>
 								@enderror
 
-                                <label class="control-label">Pertanyaan</label>
-								<div class="controls">
-									<input type="text" name="question" class="span8"
-									placeholder="isi Pertanyaan" value="{{old('question')}}">
+                                <label class="control-label">Pilih User</label>
+                                <div class="controls">
+                                    <select name="user_id" class="span8">
+                                        @foreach (App\Models\User::all() as $user)
+                                            @if ($user->is_admin ==0)
+                                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
 								</div>
-								@error('question')
-									<span class="invalid-feedback" role="alert">
-										<strong>{{ $message }}</strong>
-									</span>
-								@enderror
-
-                                <label class="control-label">Pilihan Jawaban</label>
-								<div class="controls">
-                                    @for ($i = 0; $i < 4; $i++)
-                                    <input type="text" name="options[]" class="span7"
-									placeholder="pilihan jawaban {{$i+1}}" value="{{old('options.[$i]')}}" required>
-
-                                    <input type="radio" name="correct_answer" value="{{$i}}">
-                                    <span>pilih jika benar</span>
-                                    @endfor
-								</div>
-								@error('options')
+								@error('user')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
