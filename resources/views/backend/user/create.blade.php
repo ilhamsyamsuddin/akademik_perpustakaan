@@ -24,7 +24,7 @@
                                     <div class="control-group">
                                         <label class="control-lable" for="occupation">Nomor Induk</label>
                                         <div class="controls"> 
-                                            <input type="text" name="reg_id" class="span8 @error('reg_id') border-red @enderror" placeholder="NIK, NRP, dll" value=" {{old('reg_id')}}  " >
+                                            <input type="text" name="reg_id" class="span8 @error('reg_id') border-red @enderror" placeholder="NIK, NRP, dll" value="{{old('reg_id')}}" >
                                         </div>
                                          @error('reg_id')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                             		<div class="control-group">
                             			<label class="control-lable">Nama Lengkap</label>
                             			<div class="controls">
-                            				<input type="text" name="name" class="span8 @error('name') border-red @enderror" placeholder="name" value=" {{old('name')}}  " >
+                            				<input type="text" name="name" class="span8 @error('name') border-red @enderror" placeholder="name" value="{{old('name')}}" >
                                            
 
                             			</div>
@@ -54,7 +54,7 @@
                             		<div class="control-group">
 									<label class="control-lable" for="email">Email</label>
 									<div class="controls"> 
-										<input type="text" name="email" class="span8 @error('question') border-red @enderror" placeholder="email" value=" {{old('email')}}  " >
+										<input type="text" name="email" class="span8 @error('question') border-red @enderror" placeholder="email" value="{{old('email')}}" >
 									</div>
 									 @error('email')
 									<span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                                     <div class="control-group">
                                     <label class="control-lable" for="password">Password</label>
                                     <div class="controls"> 
-                                        <input type="text" name="password" class="span8 @error('password') border-red @enderror" placeholder="password" value=" {{old('password')}}  " >
+                                        <input type="text" name="password" class="span8 @error('password') border-red @enderror" placeholder="password" value="{{old('password')}}">
                                     </div>
                                      @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                                     <div class="control-group">
                                     <label class="control-lable" for="occupation">Alamat</label>
                                     <div class="controls"> 
-                                        <input type="text" name="address" class="span8 @error('address') border-red @enderror" placeholder="address" value=" {{old('address')}}  " >
+                                        <input type="text" name="address" class="span8 @error('address') border-red @enderror" placeholder="address" value="{{old('address')}}" >
                                     </div>
                                      @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -106,7 +106,7 @@
                                     <div class="control-group">
                                     <label class="control-lable" for="occupation">No Tlp</label>
                                     <div class="controls"> 
-                                        <input type="text" name="phone" class="span8 @error('phone') border-red @enderror" placeholder="phone" value=" {{old('phone')}}  " >
+                                        <input type="text" name="phone" class="span8 @error('phone') border-red @enderror" placeholder="phone" value="{{old('phone')}}" >
                                     </div>
                                      @error('phone')
                                     <span class="invalid-feedback" role="alert">

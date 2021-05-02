@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Result;
+use App\Models\Quiz;
 
 class HomeController extends Controller
 {
@@ -23,8 +26,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return view('home');
-        return view('admin.index');
-        
+        if(auth()->user()->is_admin==1){
+            return redirect('/');
+            //return view('home');
+        }
+        $authUser = auth()->user()->id;
+        $assignedQuizId = [];
+        $user = DB::table('quiz_user_table')->where('user_id',$authUser)->get();
+        foreach ($user as $u) {
+            array_push($assignedQuizId, $u->quiz_id);
+        }
+        $quizzes = Quiz::whereIn('id', $assignedQuizId)->get();
+
+        $isExamAssigned = DB::table('quiz_user_table')->where('user_id',$authUser)->exists();
+        $wasQuizAttempted = Result::where('user_id', $authUser)->whereIn('quiz_id',(new Quiz)->hasQuizAttempted())
+                            ->pluck('quiz_id')->toArray();
+        return view('home', compact('quizzes','isExamAssigned','wasQuizAttempted'));
+        //return view('admin.index');
     }
 }

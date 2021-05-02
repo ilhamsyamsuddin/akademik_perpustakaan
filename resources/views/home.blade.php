@@ -6,16 +6,26 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                @if($isExamAssigned)
+                    @foreach ($quizzes as $quiz)
+                        <div class="card-body">
+                            <p><h3>{{$quiz->name}}</h3></p>
+                            <p>{{$quiz->description}}</p>
+                            <p>{{$quiz->minutes}} Menit</p>
+                            <p>{{$quiz->questions()->count()}} Soal</p>
+                            <p>
+                                @if (!in_array($quiz->id,$wasQuizAttempted))
+                                    <button class="btn btn-success">Mulai Mengerjakan</button>
+                                @else
+                                    <span class="float-right">Selesai</span>
+                                @endif
+                            </p>
                         </div>
-                    @endif
+                    @endforeach
 
-                    {{ __('You are logged in!') }}
-                </div>
+                @else
+                    <p>Belum ada ujian</p>
+                @endif
             </div>
         </div>
     </div>
