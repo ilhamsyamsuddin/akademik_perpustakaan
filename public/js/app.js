@@ -2016,6 +2016,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['quizId', 'quizQuestions', 'hasQuizPlayed', 'times'],
   data: function data() {
@@ -37752,7 +37756,14 @@ var render = function() {
       _c("div", { staticClass: "col-md-8" }, [
         _vm._v("\n            " + _vm._s(_vm.quizId) + "\n            "),
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Soal")]),
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Soal\n                    "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(
+                _vm._s(_vm.questionIndex) + "/" + _vm._s(_vm.questions.length)
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -37760,27 +37771,42 @@ var render = function() {
             [
               _vm._l(_vm.questions, function(question, index) {
                 return _c("div", { key: index }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(question.question) +
-                      "\n                        "
-                  ),
                   _c(
-                    "ol",
-                    { attrs: { type: "A" } },
-                    _vm._l(question.answers, function(choice) {
-                      return _c("li", { key: choice }, [
-                        _c("label", { attrs: { for: "" } }, [
-                          _c("input", { attrs: { type: "radio" } }),
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(choice.answer) +
-                              "\n                                "
-                          )
-                        ])
-                      ])
-                    }),
-                    0
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: index === _vm.questionIndex,
+                          expression: "index===questionIndex"
+                        }
+                      ]
+                    },
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(question.question) +
+                          "\n                            "
+                      ),
+                      _c(
+                        "ol",
+                        { attrs: { type: "A" } },
+                        _vm._l(question.answers, function(choice) {
+                          return _c("li", { key: choice }, [
+                            _c("label", { attrs: { for: "" } }, [
+                              _c("input", { attrs: { type: "radio" } }),
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(choice.answer) +
+                                  "\n                                    "
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
                   )
                 ])
               }),

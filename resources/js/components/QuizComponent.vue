@@ -4,18 +4,22 @@
             <div class="col-md-8">
                 {{quizId}}
                 <div class="card">
-                    <div class="card-header">Soal</div>
+                    <div class="card-header">Soal
+                        <span class="float-right">{{questionIndex}}/{{questions.length}}</span>
+                    </div>
                     <div class="card-body">
                         <div v-for="(question,index) in questions" v-bind:key="index">
-                            {{question.question}}
-                            <ol type="A">
-                                <li v-for="choice in question.answers" v-bind:key="choice">
-                                    <label for="">
-                                        <input type="radio">
-                                        {{choice.answer}}
-                                    </label>
-                                </li>
-                            </ol>
+                            <div v-show="index===questionIndex">
+                                {{question.question}}
+                                <ol type="A">
+                                    <li v-for="choice in question.answers" v-bind:key="choice">
+                                        <label for="">
+                                            <input type="radio">
+                                            {{choice.answer}}
+                                        </label>
+                                    </li>
+                                </ol>
+                            </div>
                         </div>
                         <button class="btn btn-success"@click="prev">Prev</button>
                         <button class="btn btn-success float-right"@click="next()">Next</button>
