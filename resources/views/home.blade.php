@@ -15,7 +15,7 @@
                             <p>{{$quiz->questions()->count()}} Soal</p>
                             <p>
                                 @if (!in_array($quiz->id,$wasQuizAttempted))
-                                    <a href="quiz/{{$quiz->id}}">
+                                    <a href="user/quiz/{{$quiz->id}}">
                                         <button class="btn btn-success">Mulai Mengerjakan</button>
                                     </a>
                                 @else

@@ -14,15 +14,30 @@
                                 <ol type="A">
                                     <li v-for="choice in question.answers" v-bind:key="choice">
                                         <label for="">
-                                            <input type="radio">
+                                            <input type="radio"
+                                            :value="choice.is_correct==true?true:choice.answer"
+                                            :name="index"
+                                            v-model="userResponses[index]"
+                                            @click="choices(question.id,choice.id)"                                           
+                                            >
                                             {{choice.answer}}
                                         </label>
                                     </li>
                                 </ol>
                             </div>
                         </div>
-                        <button class="btn btn-success"@click="prev">Prev</button>
-                        <button class="btn btn-success float-right"@click="next()">Next</button>
+                        <div v-show="questionIndex!=questions.length">
+                            <button   v-if="questionIndex>0" class="btn btn-success"@click="prev">Prev</button>
+                            <button class="btn btn-success float-right"@click="next();postuserChoice()">Next</button>
+                        </div>
+
+                        <div v-show="questionIndex===questions.length">
+                            <p>
+                                <center>
+                                    Anda mendapatkan:{{score()}}/{{questions.length}}
+                                </center>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,11 +47,14 @@
 
 <script>
     export default {
-        props: ['quizId','quizQuestions','hasQuizPlayed','times'],
+        props:['quizid','quizQuestions','hasQuizPlayed','times'],
         data(){
             return{
                 questions:this.quizQuestions,
                 questionIndex:0,
+                userResponses:Array(this.quizQuestions.length).fill(false),
+                currentQuestion:0,
+                currentAnswer:0,
             }
         },
         mounted() {
@@ -49,6 +67,27 @@
             prev(){
                 this.questionIndex--
             },
+            choices(question,answer){
+                this.currentAnswer=answer,
+                this.currentQuestion=question
+            },
+            score(){
+                return this.userResponses.filter((val)=>{
+                    return val===true;
+                }).length
+            },
+            postuserChoice(){
+                axios.post('/quiz/create',{
+                    answerId:this.currentAnswer,
+                    questionId:this.currentQuestion,
+                    quizId:this.quizid
+
+                }).then((response)=>{
+                    console.log(response)
+                }).catch((error)=>{
+                    alert("Error!")
+                });
+            }            
         }
     }
 </script>
