@@ -1,13 +1,14 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-8">
-                {{quizId}}
+
                 <div class="card">
-                    <div class="card-header">Soal
+                    <div class="card-header">Soal Pretest
                         <span class="float-right">{{questionIndex}}/{{questions.length}}</span>
                     </div>
                     <div class="card-body">
+                        <span class="float-right" style="color:red;">{{clock}}</span>
                         <div v-for="(question,index) in questions" v-bind:key="index">
                             <div v-show="index===questionIndex">
                                 {{question.question}}
@@ -27,7 +28,7 @@
                             </div>
                         </div>
                         <div v-show="questionIndex!=questions.length">
-                            <button   v-if="questionIndex>0" class="btn btn-success"@click="prev">Prev</button>
+                            <button v-if="questionIndex>0" class="btn btn-success"@click="prev">Prev</button>
                             <button class="btn btn-success float-right"@click="next();postuserChoice()">Next</button>
                         </div>
 
@@ -55,6 +56,7 @@
                 userResponses:Array(this.quizQuestions.length).fill(false),
                 currentQuestion:0,
                 currentAnswer:0,
+                clock:this.times
             }
         },
         mounted() {

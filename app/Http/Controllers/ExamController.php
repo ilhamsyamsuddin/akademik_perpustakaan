@@ -51,7 +51,7 @@ class ExamController extends Controller
         //check if user has been assigned a particular quiz
         $userId = DB::table('quiz_user_table')->where('user_id',$authUser)->pluck('quiz_id')->toArray();
         if(!in_array($quizId, $userId)){
-            return redirect()->to('/home')->with('error','You are not assigned this exam');
+            return redirect()->to('/home')->with('error','Kuis ini bukan untuk User ini');
         }
 
         $quiz = Quiz::find($quizId);
@@ -63,7 +63,7 @@ class ExamController extends Controller
         $wasCompleted = Result::where('user_id',$authUser)->whereIn('quiz_id',(new Quiz)->hasQuizAttempted())->pluck('quiz_id')->toArray();
 
         if(in_array($quizId,$wasCompleted)){
-            return redirect()->to('/home')->with('error','You already participated in this exam');
+            return redirect()->to('/home')->with('error','User sudah menyelesaikan kuis');
         }
 
         return view('quiz',compact('quiz','time','quizQuestions','authUserHasPlayedQuiz'));
@@ -83,5 +83,10 @@ class ExamController extends Controller
             ['answer_id'=>$answerId]
 
         );
+    }
+
+    public function viewResult($userId,$quizId){
+        $results = Result::where('user_id',$userId)->where('quiz_id',$quizId)->get();
+        return view('result-detail',compact('results'));
     }
 }
