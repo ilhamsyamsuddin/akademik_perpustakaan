@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\Result;
 use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Support\Facades\DB;
 
 class ExamController extends Controller
@@ -14,7 +15,7 @@ class ExamController extends Controller
         return view('backend.exam.assign');
     }
 
-        /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -88,5 +89,27 @@ class ExamController extends Controller
     public function viewResult($userId,$quizId){
         $results = Result::where('user_id',$userId)->where('quiz_id',$quizId)->get();
         return view('result-detail',compact('results'));
+    }
+
+    public function result(){
+         $quizzes = Quiz::get();
+         return view('backend.result.index', compact('quizzes'));
+    }
+
+    public function userQuizResult($userId, $quizId){
+        $results = Result::where('user_id',$userId)->where('quiz_id',$quizId)->get();
+        $totalQuestions = Question::where('quiz_id',$quizId)->count();
+        $attempQuestion = Result::where('quiz_id',$quizId)->where('user_id',$userId)->count();
+        $quiz = Quiz::where('id',$quizId);
+
+        $ans = [];
+        foreach($results as $answer){
+            array_push($ans,$answer->answer_id);
+        }
+        $userCorrectedAnswer = Answer::whereIn('id',$ans)->where('is_correct',1)->count();
+        $userWrongAnswer = $totalQuestions - $userCorrectedAnswer;
+        $percentage = ($userCorrectedAnswer/$totalQuestions)*100;
+        return view('backend.result.result', compact('results', 'totalQuestions','attempQuestion',
+            'userCorrectedAnswer','userWrongAnswer','percentage'));
     }
 }
