@@ -40,7 +40,7 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('exam/assign', [App\Http\Controllers\ExamController::class, 'store'])->name('exam.store');
     Route::get('exam/index', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
     Route::post('exam/remove', [App\Http\Controllers\ExamController::class, 'destroy'])->name('exam.remove');
-    Route::get('/result',[App\Http\Controllers\ExamController::class, 'result']);
+    Route::get('/result',[App\Http\Controllers\ExamController::class, 'result'])->name('result');
     Route::get('/result/{userId}/{quizId}',[App\Http\Controllers\ExamController::class, 'userQuizResult']);
 });
 
