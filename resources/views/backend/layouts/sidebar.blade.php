@@ -20,6 +20,11 @@
                             </ul>
 
                             <ul class="widget widget-menu unstyled">
+                                <li><a href="{{route('category.create')}}"><i class="menu-icon icon-book"></i> Buat Kategori pelajaran</a></li>
+                                <li><a href="{{route('category.index')}}"><i class="menu-icon icon-paste"></i>Daftar Kategori</a></li>
+                            </ul>
+
+                            <ul class="widget widget-menu unstyled">
                                 <li><a href="{{route('user.create')}}"><i class="menu-icon icon-paste"></i>Buat User</a></li>
                                 <li><a href="{{route('user.index')}}"><i class="menu-icon icon-table"></i>Daftar User </a></li>
                             </ul>

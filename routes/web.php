@@ -42,6 +42,7 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::post('exam/remove', [App\Http\Controllers\ExamController::class, 'destroy'])->name('exam.remove');
     Route::get('/result',[App\Http\Controllers\ExamController::class, 'result'])->name('result');
     Route::get('/result/{userId}/{quizId}',[App\Http\Controllers\ExamController::class, 'userQuizResult']);
+    Route::resource('category', App\Http\Controllers\CategoryController::class);
 });
 
 
