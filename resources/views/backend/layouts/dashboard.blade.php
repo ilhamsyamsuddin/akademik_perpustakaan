@@ -3,15 +3,11 @@
                         <div class="content">
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid">
-                                    <a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>65%</b>
-                                        <p class="text-muted">
-                                            Growth</p>
-                                    </a><a href="#" class="btn-box big span4"><i class="icon-user"></i><b>15</b>
-                                        <p class="text-muted">
-                                            New Users</p>
-                                    </a><a href="#" class="btn-box big span4"><i class="icon-money"></i><b>15,152</b>
-                                        <p class="text-muted">
-                                            Profit</p>
+                                    <a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>{{App\Models\Quiz::count()}}</b>
+                                        <p class="text-muted">Kuis</p>
+                                    </a>
+                                    <a href="#" class="btn-box big span4"><i class="icon-user"></i><b>{{App\Models\User::where('is_admin',0)->count()}}</b>
+                                        <p class="text-muted">User</p>
                                     </a>
                                 </div>
                                 <div class="btn-box-row row-fluid">
