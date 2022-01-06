@@ -75,7 +75,7 @@
                                     </tr>
                                     @endforeach
                                 @else
-                                    <td>Belum ada Materi </td>
+                                    <td>Belum ada kategori pelajaran</td>
                                 @endif
 
                             </tbody>

@@ -25,6 +25,11 @@
                             </ul>
 
                             <ul class="widget widget-menu unstyled">
+                                <li><a href="{{route('material.create')}}"><i class="menu-icon icon-book"></i> Buat Materi</a></li>
+                                <li><a href="{{route('material.index')}}"><i class="menu-icon icon-paste"></i>Daftar Materi</a></li>
+                            </ul>
+
+                            <ul class="widget widget-menu unstyled">
                                 <li><a href="{{route('user.create')}}"><i class="menu-icon icon-paste"></i>Buat User</a></li>
                                 <li><a href="{{route('user.index')}}"><i class="menu-icon icon-table"></i>Daftar User </a></li>
                             </ul>

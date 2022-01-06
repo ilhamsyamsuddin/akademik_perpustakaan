@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
-class CategoryController extends Controller
+use App\Models\Material;
+class MaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = (new Category)->allCategory();
-        return view('backend.category.index', compact('categories'));
+        $materials = Material::all();
+        return view('backend.material.index',[
+            'materials' => $materials
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        return view('backend.material.create');
     }
 
     /**
@@ -35,11 +37,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = $this->validateForm($request);
-        $category = (new Category)->storecategory($data);
-
-        return redirect()->back()->with('message', 'Kategori Berhasil dibuat');
+        $material = new Material;
+        $material->title = $request->title;
+        $material->content = $request->content;
+        $material->category_id = $request->category;
+        $material->save();
+        return redirect('/material');
     }
 
     /**
@@ -50,13 +53,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $cat = Category::find($id);
-        $materials = $cat->materials;
- 
-        //dd($comments);
-        return view('backend.category.show',[
-            'materials' => $materials
-        ]);
+        //
     }
 
     /**
@@ -67,8 +64,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = (new Category)->findCategory($id);
-        return view('backend.category.edit',compact('category'));
+        //
     }
 
     /**
@@ -80,10 +76,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $this->validateForm($request);
-        $category = (new Category)->updateCategory($data,$id);
-
-        return redirect(route('category.index'))->with('message', 'Kategori Berhasil diupdate');
+        //
     }
 
     /**
@@ -94,14 +87,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        (new Category)->deleteCategory($id);
-        return redirect(route('category.index'))->with('message', 'Kategori Berhasil dihapus');
-    }
-
-    public function validateForm($request){
-        return $this->validate($request,[
-            'name' => 'required|string',
-            'description' => 'max:500',
-        ]);
+        //
     }
 }

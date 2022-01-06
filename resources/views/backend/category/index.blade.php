@@ -34,7 +34,7 @@
                                         <td>{{$category->minutes}}</td>
                                         <td>
                                             <a href="{{route('category.show',[$category->id])}}">
-                                                <button class="btn btn-inverse">Lihat Soal</button>
+                                                <button class="btn btn-inverse">Lihat Materi</button>
                                             </a>
                                         </td>
                                         <td>
