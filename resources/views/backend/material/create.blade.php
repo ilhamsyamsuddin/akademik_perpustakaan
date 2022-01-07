@@ -42,7 +42,7 @@
 								<label class="control-label">Konten</label>
 								<div class="controls">
 									<textarea name="content" class="span8" rows="5" 
-									placeholder="Deskripsi Kategori(bisa kosong)" value="{{old('content')}}"></textarea>
+									placeholder="Kontent tidak boleh kosong" value="{{old('content')}}"></textarea>
 								</div>
 								@error('content')
 									<span class="invalid-feedback" role="alert">

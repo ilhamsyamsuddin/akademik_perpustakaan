@@ -53,7 +53,9 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        $material = Material::find($id);
+        return view('backend.material.show', compact('material'));
+        //returns the view with the post
     }
 
     /**
@@ -64,7 +66,8 @@ class MaterialController extends Controller
      */
     public function edit($id)
     {
-        //
+        $material = Material::find($id);
+        return view('backend.material.edit', compact('material'));
     }
 
     /**
@@ -76,7 +79,12 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $material = Material::find($id);
+        $material->title = $request->title;
+        $material->content = $request->content;
+        $material->category_id = $request->category;
+        $material->save();
+        return redirect('/material');
     }
 
     /**
@@ -87,6 +95,8 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rekt = Material::find($id);
+        $rekt->delete();
+        return redirect('/material');
     }
 }
