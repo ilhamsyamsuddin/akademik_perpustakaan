@@ -15,7 +15,8 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::get();
+        return view('backend.lesson.index', compact('categories'));
     }
 
     /**

@@ -26,27 +26,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($quizzes)>0)
-                        @foreach($quizzes as $quiz)
-                        @foreach($quiz->users as $key=>$user)
+                        @if(count($categories)>0)
+                        @foreach($categories as $category)
+                        @foreach($category->users as $key=>$user)
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$quiz->name}}</td>
+                            <td>{{$category->name}}</td>
                             
                             <td>
-                            <a href="{{route('category.show',[$quiz->id])}}">
+                            <a href="{{route('category.show',[$category->id])}}">
                                 <button class="btn btn-inverse">Lihat Soal</button>
                             </a>
                             </td>	
                             
-                            <td>
-                                <form action="{{route('lesson.remove')}}" method="POST">@csrf
-                                <input type="hidden" name="user_id" value="{{$user->id}}">
-                                <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
-                                <button class="btn btn-danger" type="submit">Hapus</button>
-                                </form>
-                            </td>
+                            <!--<td>
+                                
+                            </td>-->
                         </tr>
                         @endforeach
                         @endforeach
