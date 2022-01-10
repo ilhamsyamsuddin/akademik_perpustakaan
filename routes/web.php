@@ -44,6 +44,10 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('/result/{userId}/{quizId}',[App\Http\Controllers\ExamController::class, 'userQuizResult']);
     Route::resource('category', App\Http\Controllers\CategoryController::class);
     Route::resource('material', App\Http\Controllers\MaterialController::class);
+
+    Route::get('lesson/assign', [App\Http\Controllers\LessonController::class, 'create'])->name('lesson.create');
+    Route::post('lesson/assign', [App\Http\Controllers\LessonController::class, 'store'])->name('lesson.store');
+    Route::get('lesson/index', [App\Http\Controllers\LessonController::class, 'index'])->name('lesson.index');
 });
 
 

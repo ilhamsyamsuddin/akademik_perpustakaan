@@ -39,6 +39,11 @@
                                 <li><a href="{{route('exam.index')}}"><i class="menu-icon icon-table"></i>Daftar Kuis dan User</a></li>
                                 <li><a href="{{route('result')}}"><i class="menu-icon icon-table"></i>Hasil Kuis user </a></li>
                             </ul>
+
+                            <ul class="widget widget-menu unstyled">
+                                <li><a href="{{route('lesson.create')}}"><i class="menu-icon icon-paste"></i>Pilihkan Materi</a></li>
+                                <li><a href="{{route('lesson.index')}}"><i class="menu-icon icon-table"></i>Daftar Materi dan User</a></li>
+                            </ul>
                             <!--/.widget-nav-->
                             <ul class="widget widget-menu unstyled">
                                 <li>
