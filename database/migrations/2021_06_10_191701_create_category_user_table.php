@@ -13,7 +13,7 @@ class CreateCategoryUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_user', function (Blueprint $table) {
+        Schema::create('category_user_table', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('category_id');

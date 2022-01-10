@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lesson;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -36,7 +36,8 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = (new Category)->assignLesson($request->all());
+        return redirect()->back()->with('message', 'Pelajaran Berhasil dipilihkan');
     }
 
     /**

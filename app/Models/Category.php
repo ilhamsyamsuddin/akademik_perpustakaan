@@ -14,6 +14,13 @@ class Category extends Model
         'name','description'
     ];
 
+    public function assignLesson($data){
+        $categoryId = $data['category'];
+        $category = Category::find($categoryId);
+        $userId = $data['user_id'];
+        return $category->users()->syncWithoutDetaching($userId);
+    }
+
     public function materials(){
         return $this->hasMany('App\Models\Material');
     }
