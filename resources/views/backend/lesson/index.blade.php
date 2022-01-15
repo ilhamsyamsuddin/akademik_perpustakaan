@@ -40,9 +40,13 @@
                             </a>
                             </td>	
                             
-                            <!--<td>
-                                
-                            </td>-->
+                            <td>
+                                <form action="{{route('lesson.remove')}}" method="POST">@csrf
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                    <input type="hidden" name="category_id" value="{{$category->id}}">
+                                    <button class="btn btn-danger" type="submit">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endforeach

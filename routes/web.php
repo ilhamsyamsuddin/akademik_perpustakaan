@@ -28,6 +28,7 @@ Route::get('/yes', function () {
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/Materi/{userId}', [App\Http\Controllers\HomeController::class, 'getLesson'])->name('Lesson');
 Route::get('user/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
 Route::post('quiz/create', [App\Http\Controllers\ExamController::class, 'postQuiz']);
 Route::get('/result/user/{userId}/quiz/{quizId}',[App\Http\Controllers\ExamController::class, 'viewResult'])->middleware('auth');
@@ -48,6 +49,7 @@ Route::group(['middleware'=>'isAdmin'],function(){
     Route::get('lesson/assign', [App\Http\Controllers\LessonController::class, 'create'])->name('lesson.create');
     Route::post('lesson/assign', [App\Http\Controllers\LessonController::class, 'store'])->name('lesson.store');
     Route::get('lesson/index', [App\Http\Controllers\LessonController::class, 'index'])->name('lesson.index');
+    Route::post('lesson/remove', [App\Http\Controllers\lessonController::class, 'destroy'])->name('lesson.remove');
 });
 
 

@@ -9,6 +9,7 @@
             @endif
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
+                <a href="/Materi/{{auth()->user()->id}}">Lihat Pelajaran</a>
                 @if($isExamAssigned)
                     @foreach ($quizzes as $quiz)
                         <div class="card-body">

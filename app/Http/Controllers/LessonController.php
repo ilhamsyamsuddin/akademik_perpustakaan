@@ -81,8 +81,20 @@ class LessonController extends Controller
      * @param  \App\Models\Lesson  $lesson
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
-    {
-        //
+    public function destroy(Request $request){
+        $user_id = $request->get('user_id');
+        $category_id = $request->get('category_id');
+        $category = Category::find($category_id);
+        $category->users()->detach($user_id);
+        return redirect()->back()->with('message', 'pemasangan Pelajaran berhasil dihapus');
+        /*$result = Result::where('category_id',$category_id)->where('user_id',$user_id)->exists();
+        if($result){
+            return redirect()->back()->with('message', 'User sudah mengerjakan kuis, tidak bisa dihapus');
+        }
+        else{
+            $category->users()->detach($user_id);
+            return redirect()->back()->with('message', 'pemasangan Kuis berhasil dihapus');
+        }*/
+
     }
 }

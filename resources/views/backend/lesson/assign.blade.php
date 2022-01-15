@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-	@section('title','Buat Kuis')
+	@section('title','Buat Pelajaran')
 	@section('content')
 		<div class="span9">
 			<div class="content">
