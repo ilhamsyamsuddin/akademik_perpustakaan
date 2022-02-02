@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Result;
 use App\Models\Quiz;
 use App\Models\Category;
+use App\Models\Material;
 
 class HomeController extends Controller
 {
@@ -56,5 +57,21 @@ class HomeController extends Controller
         $Lessons = Category::whereIn('id', $assignedCategoryId)->get();
         return view('Pelajaran.index', compact('Lessons'));
         //dd($Lessons);
+    }
+
+    public function showLesson($userId,$categoryId){
+        $cat = Category::find($categoryId);
+        $materials = $cat->materials;
+ 
+        //dd($comments);
+        return view('Pelajaran.show',[
+            'materials' => $materials,
+            'categoryId' => $categoryId
+        ]);
+    }
+
+    public function showMaterial($userId,$categoryId,$materialId){
+        $material = Material::find($materialId);
+        return view('Pelajaran.material', compact('material'));
     }
 }

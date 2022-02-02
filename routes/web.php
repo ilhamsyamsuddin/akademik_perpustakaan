@@ -19,7 +19,8 @@ Auth::routes([
 	'verify'=>false
 ]);
 Route::get('/', function () {
-    return view('admin.index');
+    //return view('admin.index');
+    return redirect('/login');
 });
 Route::get('/yes', function () {
     return "yeas";
@@ -28,10 +29,12 @@ Route::get('/yes', function () {
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/Materi/{userId}', [App\Http\Controllers\HomeController::class, 'getLesson'])->name('Lesson');
 Route::get('user/quiz/{quizId}', [App\Http\Controllers\ExamController::class, 'getQuizQuestions'])->middleware('auth');
 Route::post('quiz/create', [App\Http\Controllers\ExamController::class, 'postQuiz']);
 Route::get('/result/user/{userId}/quiz/{quizId}',[App\Http\Controllers\ExamController::class, 'viewResult'])->middleware('auth');
+Route::get('/Materi/{userId}', [App\Http\Controllers\HomeController::class, 'getLesson'])->name('Materi');
+Route::get('/Materi/{userId}/{categoryId}', [App\Http\Controllers\HomeController::class, 'showLesson'])->name('Materi.show');
+Route::get('/Materi/{userId}/{categoryId}/{materialId}', [App\Http\Controllers\HomeController::class, 'showMaterial'])->name('Materi.material');
 
 Route::group(['middleware'=>'isAdmin'],function(){
     Route::resource('quiz', App\Http\Controllers\QuizController::class);

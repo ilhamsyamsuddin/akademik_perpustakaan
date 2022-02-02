@@ -9,7 +9,7 @@
                 @endif
                 <div class="module">
                     <div class="module-head">
-                        <h3>Daftar Pelajaran</h3>
+                        <h3>Daftar Materi</h3>
                     </div>
 
                     <div class="module-body">
@@ -17,27 +17,27 @@
                             <thead>
                                 <tr>
                                 <th>#</th>
-                                <th>Nama Kategori</th>
-                                <th>Deskripsi</th>
+                                <th>Judul</th>
+                                <th>Kategori</th>
                                 <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (count($Lessons)>0)
-                                    @foreach ($Lessons as $key=>$category)
+                                @if (count($materials)>0)
+                                    @foreach ($materials as $key=>$material)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{$category->name}}</td>
-                                        <td>{{$category->description}}</td>
+                                        <td>{{$material->title}}</td>
+                                        <td>{{$material->category->name}}</td>
                                         <td>
-                                            <a href="/Materi/{{auth()->user()->id}}/{{$category->id}}">
-                                                <button class="btn btn-inverse">Lihat Materi</button>
+                                            <a href="/Materi/{{auth()->user()->id}}/{{$categoryId}}/{{$material->id}}">
+                                                <button class="btn btn-inverse">Lihat Isi</button>
                                             </a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 @else
-                                    <td>Belum ada kategori pelajaran</td>
+                                    <td>Belum ada Materi </td>
                                 @endif
 
                             </tbody>
