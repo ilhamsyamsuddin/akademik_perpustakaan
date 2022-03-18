@@ -19,8 +19,8 @@ Auth::routes([
 	'verify'=>false
 ]);
 Route::get('/', function () {
-    //return view('admin.index');
-    return redirect('/login');
+    return view('admin.index');
+    //return redirect('/login');
 });
 Route::get('/yes', function () {
     return "yeas";
