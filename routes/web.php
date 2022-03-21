@@ -20,8 +20,8 @@ Auth::routes([
 ]);
 Route::get('/', function () {
     //return view('admin.index');
-    //return redirect('/login');
-    return view('auth.login');
+    return redirect('/login');
+    //return view('auth.login');
 });
 Route::get('/yes', function () {
     return "yeas";
