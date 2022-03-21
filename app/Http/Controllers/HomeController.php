@@ -29,8 +29,9 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->is_admin==1){
-            return redirect('/');
+            //return redirect('/');
             //return view('home');
+            return view('admin.index');
         }
         $authUser = auth()->user()->id;
         $assignedQuizId = [];
