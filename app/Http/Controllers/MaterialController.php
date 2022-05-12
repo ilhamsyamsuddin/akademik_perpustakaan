@@ -37,10 +37,30 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string|max:255',
+            'category' => 'required',
+            'document' => 'required',
+            'video' => 'required',
+        ]);
+
+        
         $material = new Material;
         $material->title = $request->title;
         $material->content = $request->content;
         $material->category_id = $request->category;
+        $material->document = $request->document->store('public/videos');
+        $material->video = $request->video->store('public/videos');
+        
+        /*if($request->hasFile('video')){
+          $path = $request->file('video')->store('public/videos');
+         $material->video = $path;
+        }
+
+        if($request->hasFile('document')){
+            $path = $request->file('document')->store('public/documents');
+           $material->document = $path;
+        }*/
         $material->save();
         return redirect('/material');
     }
@@ -99,4 +119,5 @@ class MaterialController extends Controller
         $rekt->delete();
         return redirect('/material');
     }
+    
 }
