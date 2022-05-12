@@ -15,8 +15,8 @@ class AddDocumentToMaterials extends Migration
     {
         Schema::table('materials', function (Blueprint $table) {
             //
-            $table->string('powerpoint');
-            $table->string('pdf');
+            //$table->string('powerpoint');
+            $table->string('document');
             $table->string('video');
         });
     }
@@ -29,8 +29,8 @@ class AddDocumentToMaterials extends Migration
     public function down()
     {
         Schema::table('materials', function (Blueprint $table) {
-            $table->dropColumn('powerpoint');
-            $table->dropColumn('pdf');
+            //$table->dropColumn('powerpoint');
+            $table->dropColumn('document');
             $table->dropColumn('video');
         });
     }
