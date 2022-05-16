@@ -38,7 +38,7 @@ class LessonController extends Controller
     public function store(Request $request)
     {
         $category = (new Category)->assignLesson($request->all());
-        return redirect()->back()->with('message', 'Pelajaran Berhasil dipilihkan');
+        return redirect()->back()->with('message', 'Kelas Berhasil dipilihkan');
     }
 
     /**

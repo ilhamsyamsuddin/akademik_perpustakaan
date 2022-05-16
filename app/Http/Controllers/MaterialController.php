@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Material;
 class MaterialController extends Controller
 {
@@ -49,21 +50,22 @@ class MaterialController extends Controller
         $material->title = $request->title;
         $material->content = $request->content;
         $material->category_id = $request->category;
-        $material->document = $request->document->store('public/videos');
-        $material->video = $request->video->store('public/videos');
+        $path = $request->document->store('public/documents');
+        $material->document = Str::substr($path,6); 
+        $path = $request->video->store('public/videos');
+        $material->video = Str::substr($path,6);
         
-        /*if($request->hasFile('video')){
-          $path = $request->file('video')->store('public/videos');
-         $material->video = $path;
-        }
-
-        if($request->hasFile('document')){
-            $path = $request->file('document')->store('public/documents');
-           $material->document = $path;
-        }*/
         $material->save();
         return redirect('/material');
     }
+
+    /*public function getVideo(Video $video){
+        $name = $video->name;
+        $fileContents = Storage::disk('local')->get("uploads/videos/{$name}");
+        $response = Response::make($fileContents, 200);
+        $response->header('Content-Type', "video/mp4");
+        return $response;
+    }*/
 
     /**
      * Display the specified resource.
@@ -75,7 +77,15 @@ class MaterialController extends Controller
     {
         $material = Material::find($id);
         return view('backend.material.show', compact('material'));
+        //dd($material->video);
         //returns the view with the post
+    }
+
+    public function getVideo($path){
+        $video = Storage::disk('local')->get($path);
+        $response = Response::make($video, 200);
+        $response->header('Content-Type', 'video/mp4');
+        return $response;
     }
 
     /**

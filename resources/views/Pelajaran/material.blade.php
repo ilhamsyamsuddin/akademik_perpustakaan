@@ -11,6 +11,20 @@
                 <div class="card-header"><h3>{{$material->title}}</h3></div>
                 <div class="card-body"><p>{{$material->content}}</p></div>
             </div>
+
+            <div class="card">
+                <iframe width="1024" height="512"
+                src="{{asset('storage'.$material->document)}}">
+                
+                </iframe>
+            </div>
+            <br>
+            <div class="card">
+                <iframe width="1024" height="512"
+                src="{{asset('storage'.$material->video)}}">
+                
+                </iframe>
+            </div>
         </div>
     </div>
 </div>

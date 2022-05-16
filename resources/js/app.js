@@ -5,8 +5,11 @@
  */
 
 require('./bootstrap');
-var moment = require('moment'); // require
 window.Vue = require('vue');
+  
+var moment = require('moment');
+  
+console.log(moment().format());
 
 /**
  * The following block of code may be used to automatically register your

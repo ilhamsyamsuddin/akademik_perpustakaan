@@ -4,11 +4,11 @@
             <div class="col-md-8">
 
                 <div class="card">
-                    <div class="card-header">Soal Pretest
+                    <div class="card-header">Kuis Online
                         <span class="float-right">{{questionIndex}}/{{questions.length}}</span>
                     </div>
                     <div class="card-body">
-                        <span class="float-right" style="color:red;">{{clock}}</span>
+                        <span class="float-right" style="color:red;">{{time}}</span>
                         <div v-for="(question,index) in questions" v-bind:key="index">
                             <div v-show="index===questionIndex">
                                 {{question.question}}
@@ -28,8 +28,8 @@
                             </div>
                         </div>
                         <div v-show="questionIndex!=questions.length">
-                            <button v-if="questionIndex>0" class="btn btn-success"@click="prev">Prev</button>
-                            <button class="btn btn-success float-right"@click="next();postuserChoice()">Next</button>
+                            <button v-if="questionIndex>0" class="btn btn-success" @click="prev">Prev</button>
+                            <button class="btn btn-success float-right" @click="next();postuserChoice()">Next</button>
                         </div>
 
                         <div v-show="questionIndex===questions.length">
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import * as moment from 'moment'
+//import 'moment-duration-format'
     export default {
         props:['quizid','quizQuestions','hasQuizPlayed','times'],
         data(){
@@ -56,11 +58,25 @@
                 userResponses:Array(this.quizQuestions.length).fill(false),
                 currentQuestion:0,
                 currentAnswer:0,
-                clock:this.times
+                //clock: this.times * 60,
+                clock: moment(this.times*60 * 1000),
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            //console.log('Component mounted.')
+            setInterval(() => {
+            this.clock = moment(this.clock.subtract(1, 'seconds'))
+            }, 1000);
+        },
+        computed: {
+            time: function(){
+            var minsec=this.clock.format('mm:ss');
+            if(minsec=='00:00'){
+                alert('timeout')
+                window.location.reload();      
+            }
+                return minsec
+            }
         },
         methods: {
             next(){
