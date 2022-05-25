@@ -4,10 +4,10 @@
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid">
                                     <a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>{{App\Models\Quiz::count()}}</b>
-                                        <p class="text-muted">Kuis</p>
+                                        <p class="text-muted"><b>Kuis</b></p>
                                     </a>
                                     <a href="#" class="btn-box big span4"><i class="icon-user"></i><b>{{App\Models\User::where('is_admin',0)->count()}}</b>
-                                        <p class="text-muted">User</p>
+                                        <p class="text-muted"><b>User</b></p>
                                     </a>
                                 </div>
                                 <div class="btn-box-row row-fluid">

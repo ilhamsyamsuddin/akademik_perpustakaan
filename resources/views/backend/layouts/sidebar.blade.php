@@ -33,6 +33,10 @@
                                 <li><a href="{{route('user.create')}}"><i class="menu-icon icon-paste"></i>Buat User</a></li>
                                 <li><a href="{{route('user.index')}}"><i class="menu-icon icon-table"></i>Daftar User </a></li>
                             </ul>
+                            <ul class="widget widget-menu unstyled">
+                                <li><a href="{{route('zoom.create')}}"><i class="menu-icon icon-paste"></i>Buat Zoom</a></li>
+                                <li><a href="{{route('zoom.index')}}"><i class="menu-icon icon-table"></i>Daftar Zoom</a></li>
+                            </ul>
 
                             <ul class="widget widget-menu unstyled">
                                 <li><a href="{{route('exam.create')}}"><i class="menu-icon icon-paste"></i>Pilihkan Kuis</a></li>

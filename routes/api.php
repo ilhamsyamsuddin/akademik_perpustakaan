@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Route::post('/zoom-create-meeting', 'ZoomController@createZoom');
+Route::get('/zoom-create-meeting', [App\Http\Controllers\ZoomController::class, 'createZoom']);

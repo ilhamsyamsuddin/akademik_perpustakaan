@@ -39,6 +39,7 @@ Route::get('/Materi/{userId}/{categoryId}/{materialId}', [App\Http\Controllers\H
 
 Route::group(['middleware'=>'isAdmin'],function(){
     Route::resource('quiz', App\Http\Controllers\QuizController::class);
+    Route::resource('zoom', App\Http\Controllers\ZoomController::class);
     Route::resource('question', App\Http\Controllers\QuestionController::class);
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::get('exam/assign', [App\Http\Controllers\ExamController::class, 'create'])->name('exam.create');

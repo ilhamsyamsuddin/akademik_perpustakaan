@@ -24,6 +24,10 @@ class Category extends Model
     public function materials(){
         return $this->hasMany('App\Models\Material');
     }
+
+    public function zoom_classes(){
+        return $this->hasMany('App\Models\zoom_class');
+    }
     public function users(){
         return $this->belongsToMany(User::class,'category_user_table');
     }
