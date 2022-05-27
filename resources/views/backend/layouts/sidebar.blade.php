@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="row">
                     <div class="span3">
-                        <div class="sidebar">
+                        <div class="sidebar-user">
                             <ul class="widget widget-menu unstyled">
                                 <li class="active"><a href="/"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
@@ -15,17 +15,17 @@
                             
                             
                             <ul class="widget widget-menu unstyled">
-                                <li><a href="{{route('question.create')}}"><i class="menu-icon icon-book"></i> Buat Soal</a></li>
+                                <li class="sidebar-color"><a href="{{route('question.create')}}"><i class="menu-icon icon-book"></i> Buat Soal</a></li>
                                 <li><a href="{{route('question.index')}}"><i class="menu-icon icon-paste"></i>Daftar Soal</a></li>
                             </ul>
 
                             <ul class="widget widget-menu unstyled">
-                                <li><a href="{{route('category.create')}}"><i class="menu-icon icon-book"></i> Buat Kategori pelajaran</a></li>
-                                <li><a href="{{route('category.index')}}"><i class="menu-icon icon-paste"></i>Daftar Kategori</a></li>
+                                <li><a href="{{route('category.create')}}"><i class="menu-icon icon-book"></i> Buat Kelas</a></li>
+                                <li><a href="{{route('category.index')}}"><i class="menu-icon icon-paste"></i>Daftar Kelas</a></li>
                             </ul>
 
-                            <ul class="widget widget-menu unstyled">
-                                <li><a href="{{route('material.create')}}"><i class="menu-icon icon-book"></i> Buat Materi</a></li>
+                            <ul class="widget-menu unstyled">
+                                <li><a class="sidebar-color" href="{{route('material.create')}}"><i class="menu-icon icon-book"></i> Buat Materi</a></li>
                                 <li><a href="{{route('material.index')}}"><i class="menu-icon icon-paste"></i>Daftar Materi</a></li>
                             </ul>
 
