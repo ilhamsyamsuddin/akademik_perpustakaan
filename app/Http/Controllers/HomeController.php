@@ -8,6 +8,7 @@ use App\Models\Result;
 use App\Models\Quiz;
 use App\Models\Category;
 use App\Models\Material;
+use App\Models\zoom_class;
 
 class HomeController extends Controller
 {
@@ -74,5 +75,12 @@ class HomeController extends Controller
     public function showMaterial($userId,$categoryId,$materialId){
         $material = Material::find($materialId);
         return view('Pelajaran.material', compact('material'));
+    }
+
+    public function zoomMeeting(){
+        $classes = zoom_class::all();
+        return view('pelajaran.meetings',[
+            'classes' => $classes
+        ]);
     }
 }

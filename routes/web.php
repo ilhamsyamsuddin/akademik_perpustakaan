@@ -36,6 +36,7 @@ Route::get('/result/user/{userId}/quiz/{quizId}',[App\Http\Controllers\ExamContr
 Route::get('/Materi/{userId}', [App\Http\Controllers\HomeController::class, 'getLesson'])->name('Materi');
 Route::get('/Materi/{userId}/{categoryId}', [App\Http\Controllers\HomeController::class, 'showLesson'])->name('Materi.show');
 Route::get('/Materi/{userId}/{categoryId}/{materialId}', [App\Http\Controllers\HomeController::class, 'showMaterial'])->name('Materi.material');
+Route::get('/Meeting', [App\Http\Controllers\HomeController::class, 'zoomMeeting']);
 
 Route::group(['middleware'=>'isAdmin'],function(){
     Route::resource('quiz', App\Http\Controllers\QuizController::class);

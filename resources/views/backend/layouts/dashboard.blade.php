@@ -25,7 +25,7 @@
                                                 <a href="{{route('user.index')}}" class="btn-box medium span4"><i class="icon-user"></i><b>{{App\Models\User::where('is_admin',0)->count()}}</b>
                                                     <p class="text-muted"><b>Daftar User</b></p>
                                                 </a>
-                                                <a href="{{route('material.index')}}" class="btn-box medium span4"><i class="icon-desktop"></i><b>{{App\Models\zoom_class::count()}}</b>
+                                                <a href="{{route('zoom.index')}}" class="btn-box medium span4"><i class="icon-desktop"></i><b>{{App\Models\zoom_class::count()}}</b>
                                                     <p class="text-muted"><b>Daftar Kelas Zoom</b></p>
                                                 </a>
                                             </div>
