@@ -65,7 +65,7 @@ blockquote small::before {
 	font-size: 16px;
 	line-height: 22px
 }
-.text-muted {color: #999;}
+.text-muted {color: white;}
 .wrapper {
 	background: url(../images/bg.png) #eee;
 	border-bottom: 1px solid #bbb;
@@ -339,6 +339,10 @@ box-shadow: none;
 }
 .btn.btn-large {
 	font-size: 16px
+}
+
+.icon-white {
+	color: #fff;
 }
 .btn-box {
 	margin-bottom: 20px;
@@ -928,7 +932,7 @@ transition: all .2s ease-in-out;
 	border-top: 1px solid #555
 }
 .widget-menu>li>a {
-	background-color: #7386D5;
+	background-color: #0d0d0d;
 	color: #fff;
 	font-size: large;
 	-webkit-transition: all .2s ease-in-out;

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifyMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,14 @@ Route::get('/Materi/{userId}', [App\Http\Controllers\HomeController::class, 'get
 Route::get('/Materi/{userId}/{categoryId}', [App\Http\Controllers\HomeController::class, 'showLesson'])->name('Materi.show');
 Route::get('/Materi/{userId}/{categoryId}/{materialId}', [App\Http\Controllers\HomeController::class, 'showMaterial'])->name('Materi.material');
 Route::get('/Meeting', [App\Http\Controllers\HomeController::class, 'zoomMeeting']);
+Route::get('send-email', function () {
+    Mail::to('ilhamsyamsuddin114@gmail.com')->send(new NotifyMail());
+    if (Mail::failures()) {
+        echo "Email not send";
+    }else{
+        echo "Email has been sent";
+   }
+});
 
 Route::group(['middleware'=>'isAdmin'],function(){
     Route::resource('quiz', App\Http\Controllers\QuizController::class);
