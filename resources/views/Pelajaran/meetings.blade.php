@@ -34,7 +34,7 @@
                                         <td>{{$class->meeting_id}}</td>
                                         <td>{{$class->topic}}</td>
                                         <td>{{$class->start_at}}</td>
-                                        <td><a href="{{$class->start_url}}">Masuk Kelas</a></td>
+                                        <td><a href="/regis/{{$class->meeting_id}}"><button type="button" class="btn btn-primary btn-block">Daftar Meeting ini</button></a></td>
                                   
                                     </tr>
                                     @endforeach

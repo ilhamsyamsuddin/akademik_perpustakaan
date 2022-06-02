@@ -9,6 +9,8 @@ use App\Models\Quiz;
 use App\Models\Category;
 use App\Models\Material;
 use App\Models\zoom_class;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifyMail;
 
 class HomeController extends Controller
 {
@@ -77,6 +79,13 @@ class HomeController extends Controller
         return view('Pelajaran.material', compact('material'));
     }
 
+    public function sendMail($meetingId){
+        $mail = auth()->user()->email;
+        $meeting =  DB::table('zoom_classes')->where('meeting_id',$meetingId)->get();
+        $details = $meeting[0];
+        Mail::to($mail)->send(new NotifyMail($details));
+        return redirect('/Meeting');
+    }
     public function zoomMeeting(){
         $classes = zoom_class::all();
         return view('pelajaran.meetings',[

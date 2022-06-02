@@ -9,7 +9,10 @@
             @endif
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <button type="button" class="btn btn-primary"><a href="/Materi/{{auth()->user()->id}}" class="text-white">Lihat Kelas</a></button>
+                <a href="/Materi/{{auth()->user()->id}}" class="text-white"><button type="button" class="btn btn-primary btn-block">Lihat Kelas</button></a>
+                <br>
+                <a href="/Meeting" class="text-white"><button type="button" class="btn btn-success btn-block">Lihat Zoom Meeting</button></a>
+                <br>
                 @if($isExamAssigned)
                     @foreach ($quizzes as $quiz)
                         <div class="card-body">
