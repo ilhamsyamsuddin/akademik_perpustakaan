@@ -12,7 +12,7 @@
                                                 <a href="{{route('question.index')}}" class="btn-box btn-success medium span4"><i class="icon-file" style="color: white"></i><b style="color:white">{{App\Models\Question::count()}}</b>
                                                     <p class="text-muted"><b style="color:white">Soal</b></p>
                                                 </a>
-                                                <a href="{{route('category.index')}}" class="btn-box btn-warning medium span4"><i class="icon-book" style="color: black"></i><b style="color:white">{{App\Models\Category::count()}}</b>
+                                                <a href="{{route('category.index')}}" class="btn-box btn-warning medium span4"><i class="icon-book" style="color: black"></i><b style="color:#0D0D0D">{{App\Models\Category::count()}}</b>
                                                     <p class="text-muted"><b style="color:#0D0D0D">Kelas</b></p>
                                                 </a>
                                             </div>
